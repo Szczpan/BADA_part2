@@ -24,14 +24,13 @@ public class WebSecurityConfig {
                         .requestMatchers("/", "/index").permitAll()
                         .anyRequest().authenticated()
                 )
+
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .permitAll()
                 )
 
-                .logout(logout -> logout
-                        .logoutSuccessUrl("/index")
-                        .permitAll());
+                .logout(LogoutConfigurer::permitAll);
 
 
         return http.build();
