@@ -22,15 +22,22 @@ public class WebSecurityConfig {
         http
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/", "/index", "/css/**", "/js/**", "/webjars/**").permitAll()
+                        .requestMatchers("/resources/static/**").permitAll()
+                        .requestMatchers("/main").authenticated()
+                        .requestMatchers("/main_admin").hasRole("ADMIN")
+                        .requestMatchers("/main_user").hasRole("USER")
                         .anyRequest().authenticated()
                 )
 
                 .formLogin((form) -> form
                         .loginPage("/login")
+                        .defaultSuccessUrl("/main")
                         .permitAll()
                 )
 
-                .logout(LogoutConfigurer::permitAll);
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/index")
+                        .permitAll());
 
 
         return http.build();
