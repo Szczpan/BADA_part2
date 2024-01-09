@@ -10,6 +10,11 @@ public class Kod_pocztowy
     private String kod_pocztowy;
     private String wojewodztwo;
     private String miasto;
+
+    public Kod_pocztowy()
+    {
+    }
+
     public Kod_pocztowy(String kod_pocztowy, String wojewodztwo, String miasto)
     {
         super();
