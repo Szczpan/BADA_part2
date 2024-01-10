@@ -10,7 +10,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class AppController implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/index").setViewName("index");
-        registry.addViewController("/").setViewName("index");
         registry.addViewController("/main").setViewName("main");
         registry.addViewController("/login").setViewName("login");
 
@@ -39,6 +38,29 @@ public class AppController implements WebMvcConfigurer {
                 return "redirect:/index";
             }
         }
+
+        @RequestMapping("/index")
+        public String redirectIndexAfterLogin(HttpServletRequest request)
+        {
+            if (request.isUserInRole("ADMIN"))
+            {
+                return  "redirect:/main_admin";
+            } else if (request.isUserInRole("USER"))
+            {
+                return "redirect:/main_user";
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        @RequestMapping("/")
+        public String redirectToIndex(HttpServletRequest request)
+        {
+                return "redirect:/index";
+        }
+
 
         @RequestMapping(value={"/main_admin"})
         public String showAdminPage(Model model) {

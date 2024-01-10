@@ -34,7 +34,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">PWGE</a>
+            <a class="navbar-brand" href="/">PwGE</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                     aria-controls="navbarResponsive"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -50,10 +50,6 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/main}">Main</a>
-                    </li>
-
-                    <li class="nav-item">
                         <a class="nav-link" th:href="@{/main}">Login</a></a>
                     </li>
 
@@ -66,11 +62,11 @@
     <div class="background">
         <div class="mask" style="background-color: rgba(0, 0, 0, 0.4); height: 100vh; width: 100%">
             <!-- Container -->
-            <div class="container d-flex justify-content-center align-items-center h-100 text-white">
+            <div class="container d-flex justify-content-center align-items-center h-75 text-white">
                 <div>
-                    <h1 style="font-size:30px">Welcome to the home page!</h1>
+                    <h1 style="font-size:30px">Welcome to the PwGE!</h1>
 
-                    <div style="font-size:20px">If you want to login, click <a th:href="@{/main}"><b>here</b></a> or in the
+                    <div style="font-size:20px">In order to access your data, please head over to the <a style="color: #83fff8" th:href="@{/main}"><b>login</b></a> page or click in the
                         upper right corner.
                     </div>
                 </div>

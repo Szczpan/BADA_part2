@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8"/>
     <title>Main User Page</title>
@@ -22,9 +23,9 @@
 <body>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-    <div class="container">
-        <a class="navbar-brand" href="/">PWGE</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">PwGE</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -33,13 +34,14 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
 
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/index}">Home</a>
-                </li>
-
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Main
                         <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/user_info}">My info
                     </a>
                 </li>
 
@@ -56,16 +58,16 @@
 
 <div class="background text-white">
     <div class="mask" style="background-color: rgba(0, 0, 0, 0.4); height: 100vh; width: 100%">
-        <div class="container">
+        <div class="container d-flex justify-content-center ">
             <div class="row">
 
-                <div class="col-md-10 mt-5">
+                <div style="padding-top: 10vh">
                     <form method="post" th:action="@{/logout}">
                         <div class="form-group">
                             <label style="font-size:30px" th:inline="text">Welcome <a
                                     style="color:lightskyblue; text-transform:capitalize"><b><span sec:authentication="principal.username">Name</span></b></a>
                                 to the main page!</label>
-                            <div style="font-size:20px">If you want to logout, click "Logout" button under this text.</div>
+                            <div style="font-size:20px">If you want to log out, click "Logout" button under this text.</div>
                         </div>
 
                         <button class="btn btn-primary" type="submit" onclick="successfullyLogout()" value="Sign Out">Logout

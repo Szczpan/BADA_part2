@@ -23,23 +23,28 @@
     </div>
 </nav>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 mt-5">
+<div class="background_error">
+    <div class="mask" style="background-color: rgba(0, 0, 0, 0.4); height: 100vh; width: 100%">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mt-5">
 
-            <form method="get" th:action="@{/index}">
+                    <form method="get" th:action="@{/index}">
 
-                <div class="form-group">
-                    <div><b><p style="font-size:30px">Błąd</p></b></div>
-                    <div><p style="font-size:24px">403 - Brak dostępu</p></div>
+                        <div class="form-group">
+                            <div><b><p style="font-size:30px">Błąd</p></b></div>
+                            <div><p style="font-size:24px">403 - Brak dostępu</p></div>
+                        </div>
+
+                        <button class="btn btn-primary" type="submit" value="Sign In">Powrót do strony głównej</button>
+
+                    </form>
                 </div>
-
-                <button class="btn btn-primary" type="submit" value="Sign In">Powrót do strony głównej</button>
-
-            </form>
+            </div>
         </div>
     </div>
 </div>
+
 
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
