@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Main User Page</title>
+
+    <link th:rel="stylesheet" th:href="@{/css/background.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"/>
+
+    <!-- Google Fonts Roboto -->
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <!-- Font Awesome -->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+</head>
+
+<!-- <body th:style="'background: url(/assets/img/img.png) no-repeat center center fixed;'"> -->
+
+
+<!--<style th:inline="text">-->
+<!--    body{-->
+<!--        background: url([[@{/assets/img/img.png}]])-->
+<!--        no-repeat center center fixed;-->
+<!--    }-->
+<!--</style>-->
+<body>
+<header>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">PwGE</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/main}">Main
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/user_info}">My info
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/supply_points}">Supply points
+                        </a>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/invoices}">Invoices
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:inline="text" style="color:lightskyblue;">You are logged in as <b
+                        ><span sec:authentication="principal.username">Name</span></b></a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="background">
+        <div class="mask" style="background-color: rgba(0, 0, 0, 0.4); height: 100vh; width: 100%">
+            <!-- Container -->
+            <div class="container d-flex justify-content-center align-items-center h-75">
+                <table class="table" style="overflow: hidden; border-radius: 10px; background: #FAFFF6; border-top-color: #FAFFF6">
+                    <thead>
+                    <tr>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="invoice : ${fakturaList}" class="text-capitalize">
+                        <td><span th:text="${invoice.kwota}"></span></td>
+                        <td><span th:text="${invoice.data}"></span></td>
+                        <td><span th:text="${invoice.status_faktury}"></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<!--Using images in page    -->
+<!-- <img th:src="@{https://mdbootstrap.com/img/Photos/Others/images/76.jpg}" alt="Image" class="img-fluid">-->
+
+<!-- Background image -->
+<main>
+    <div class="container">
+
+    </div>
+</main>
+
+<!-- Background image -->
+
+
+
+<!--<div align="center">
+    <h1>Sales Records</h1>
+
+    <table border="1" cellpadding="10">
+
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th>Amount</th>
+            <th>Action</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="sale : ${listSale}">
+            <td th:text="${sale.id}">ID</td>
+            <td th:text="${sale.item}">Item Name</td>
+            <td th:text="${sale.quantity}">Quantity</td>
+            <td th:text="${sale.amount}">Amount</td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>-->
+
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+</body>
+</html>
+

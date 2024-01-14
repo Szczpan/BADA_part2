@@ -33,9 +33,11 @@ public class KlientDAO
 
     }
 
-    public Klient get(int nr_klienta)
+    public Klient get(String email)
     {
-        return null;
+        String sql = String.format("SELECT * FROM KLIENCI WHERE ADRES_EMAIL LIKE '%s'", email);
+
+        return jdbcTemplate.queryForObject(sql, BeanPropertyRowMapper.newInstance(Klient.class));
     }
 
     public void update(Klient klient)

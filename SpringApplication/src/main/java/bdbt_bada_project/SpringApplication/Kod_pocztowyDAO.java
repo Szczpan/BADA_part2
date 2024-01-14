@@ -36,7 +36,8 @@ public class Kod_pocztowyDAO
     /* Read – odczytywanie danych z bazy */
     public Kod_pocztowy get(String kod_pocztowy)
     {
-        return null;
+        String sql = String.format("SELECT * FROM KODY_POCZTOWE WHERE KOD_POCZTOWY LIKE '%s'", kod_pocztowy);
+        return jdbcTemplate.queryForObject(sql, BeanPropertyRowMapper.newInstance(Kod_pocztowy.class));
     }
 
     /* Update – aktualizacja danych */

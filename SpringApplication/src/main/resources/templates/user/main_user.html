@@ -46,8 +46,18 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link" th:href="@{/supply_points}">Supply points
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/invoices}">Invoices
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link" th:inline="text" style="color:lightskyblue;">You are logged in as <b
-                            style="text-transform:capitalize"><span sec:authentication="principal.username">Name</span></b></a>
+                            ><span sec:authentication="principal.username">Name</span></b></a>
                 </li>
 
             </ul>
@@ -65,7 +75,7 @@
                     <form method="post" th:action="@{/logout}">
                         <div class="form-group">
                             <label style="font-size:30px" th:inline="text">Welcome <a
-                                    style="color:lightskyblue; text-transform:capitalize"><b><span sec:authentication="principal.username">Name</span></b></a>
+                                    style="color:lightskyblue"><b><span sec:authentication="principal.username">Name</span></b></a>
                                 to the main page!</label>
                             <div style="font-size:20px">If you want to log out, click "Logout" button under this text.</div>
                         </div>

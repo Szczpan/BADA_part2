@@ -33,7 +33,8 @@ public class AdresDAO
 
     public Adres get(int nr_adresu)
     {
-        return null;
+        String sql = String.format("SELECT * FROM ADRESY WHERE NR_ADRESU = %d", nr_adresu);
+        return jdbcTemplate.queryForObject(sql, BeanPropertyRowMapper.newInstance(Adres.class));
     }
 
     public void update(Adres adres)
