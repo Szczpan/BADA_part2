@@ -35,6 +35,8 @@ class Kod_pocztowyDAOTest
     @Test
     void save()
     {
+        Kod_pocztowy kod_pocztowy = new Kod_pocztowy("00-000", "mazowieckie", "Warszawa");
+        dao.save(kod_pocztowy);
     }
 
     @Test

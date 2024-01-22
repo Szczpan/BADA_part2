@@ -60,6 +60,12 @@
                             ><span sec:authentication="principal.username">Name</span></b></a>
                 </li>
 
+                <li class="nav-item">
+                    <form method="post" th:action="@{/logout}">
+                        <button class="nav-link btn btn-secondary" type="submit" onclick="successfullyLogout()">Logout</button>
+                    </form>
+                </li>
+
             </ul>
         </div>
     </div>

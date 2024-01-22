@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Main User Page</title>
+
+    <link th:rel="stylesheet" th:href="@{/css/background.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"/>
+
+    <!-- Google Fonts Roboto -->
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <!-- Font Awesome -->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+</head>
+
+<!-- <body th:style="'background: url(/assets/img/img.png) no-repeat center center fixed;'"> -->
+
+
+<!--<style th:inline="text">-->
+<!--    body{-->
+<!--        background: url([[@{/assets/img/img.png}]])-->
+<!--        no-repeat center center fixed;-->
+<!--    }-->
+<!--</style>-->
+<body>
+<header>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">PwGE</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/main}">Main
+                        </a>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/all_clients}">Clients
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/all_supply_points}">Supply points
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/all_invoices}">Invoices
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:inline="text" style="color:lightskyblue;">You are logged in as <b
+                        ><span sec:authentication="principal.username">Name</span></b></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <form method="post" th:action="@{/logout}">
+                            <button class="nav-link btn btn-secondary" type="submit" onclick="successfullyLogout()">Logout</button>
+                        </form>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="background">
+        <div class="mask" style="background-color: rgba(0, 0, 0, 0.4); height: 100vh; width: 100%">
+            <!-- Container -->
+            <div class="container d-flex justify-content-center align-items-center h-75">
+                <div class="row">
+
+                    <h1 style="margin:20px;">Add new supply point</h1>
+                    <br/>
+
+                    <!-- End line/ new line -->
+                    <br/>
+                    <form action="#" th:action="@{/supply_points/new/insert}" th:object="${supplyPoint}" method="post" class="row g-4">
+                        <!-- Table -->
+                        <div class="col-md-6">
+                            <label class="form-label" for="Street">Street</label>
+                            <input class="form-control" type="text" th:field="*{adres.ulica}" id="Street" maxlength="30" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="House_nr">House number</label>
+                            <input class="form-control" type="text" th:field="*{adres.nr_domu}" id="House_nr" maxlength="30" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="Postal-code">Postal code</label>
+                            <input class="form-control" type="text" th:field="*{kod_pocztowy.kod_pocztowy}" id="Postal-code" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label" for="City">City</label>
+                            <input class="form-control" type="text" th:field="*{kod_pocztowy.miasto}" id="City" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label" for="county">Voivodeship</label>
+                            <select class="form-select" th:field="*{kod_pocztowy.wojewodztwo}" id="county" required>
+                                <option value="">Please select</option>
+                                <option value="mazowieckie">Mazowieckie</option>
+                                <option value="K">Kobieta</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label" for="country">Country</label>
+                            <select class="form-select" th:field="*{adres.kraj}" id="country" required>
+                                <option value="">Please select</option>
+                                <option value="Polska">Polska</option>
+                            </select>
+                        </div>
+                        <!-- Button save -->
+
+                        <div class="col-md-6 text-end">
+                            <a class="btn btn-secondary" th:href="@{/supply_points}">Return</a>
+                        </div>
+
+                        <div class="col-md-6 text-start">
+                            <button class="btn btn-success" type="submit" onclick="successfullyLogout()">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Background image -->
+<main>
+    <div class="container">
+
+    </div>
+</main>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+</body>
+</html>
+

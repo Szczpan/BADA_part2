@@ -3,6 +3,8 @@ package bdbt_bada_project.SpringApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -36,6 +38,11 @@ public class PunktPoboruEnergiiDAO
     /* Insert – wstawianie nowego wiersza do bazy */
     public void save(PunktPoboruEnergii punktPoboruEnergii)
     {
+        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+        simpleJdbcInsert.withTableName("PUNKTY_POBORU_ENERGII").usingColumns("NR_KLIENTA", "NR_ADRESU", "DOSTARCZANE_NAPIECIE");
+
+        BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(punktPoboruEnergii);
+        simpleJdbcInsert.execute(param);
     }
 
     /* Read – odczytywanie danych z bazy */

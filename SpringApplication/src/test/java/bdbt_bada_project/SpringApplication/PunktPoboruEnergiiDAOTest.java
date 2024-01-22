@@ -37,4 +37,12 @@ public class PunktPoboruEnergiiDAOTest
         List<PunktPoboruEnergii> punktPoboruEnergiiList = punktPoboruEnergiiDAO.listByNrKlienta(2);
         assertNotNull(punktPoboruEnergiiList);
     }
+
+    @Test
+    void save()
+    {
+        PunktPoboruEnergii punktPoboruEnergii = new PunktPoboruEnergii(0, 2, 3, 400);
+
+        punktPoboruEnergiiDAO.save(punktPoboruEnergii);
+    }
 }

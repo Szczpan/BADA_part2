@@ -28,4 +28,12 @@ public class AdresDAOTest
     {
         assertNotNull(adresDAO.get(1));
     }
+
+    @Test
+    void save()
+    {
+        Adres adres = new Adres(0, "a", "1", "0", "Polska", "00-000");
+
+        adresDAO.save(adres);
+    }
 }

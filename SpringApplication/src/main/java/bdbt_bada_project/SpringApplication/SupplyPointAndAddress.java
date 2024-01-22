@@ -7,9 +7,9 @@ import lombok.Setter;
 @Setter
 public class SupplyPointAndAddress
 {
-    private PunktPoboruEnergii punktPoboruEnergii;
-    private Adres adres;
-    private Kod_pocztowy kod_pocztowy;
+    public PunktPoboruEnergii punktPoboruEnergii;
+    public Adres adres;
+    public Kod_pocztowy kod_pocztowy;
 
     public SupplyPointAndAddress(PunktPoboruEnergii punktPoboruEnergii, Adres adres, Kod_pocztowy kod_pocztowy)
     {
@@ -20,5 +20,8 @@ public class SupplyPointAndAddress
 
     public SupplyPointAndAddress()
     {
+        punktPoboruEnergii = new PunktPoboruEnergii();
+        adres = new Adres();
+        kod_pocztowy = new Kod_pocztowy();
     }
 }

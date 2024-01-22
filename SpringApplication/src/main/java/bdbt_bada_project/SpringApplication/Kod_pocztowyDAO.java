@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -31,6 +33,11 @@ public class Kod_pocztowyDAO
     /* Insert – wstawianie nowego wiersza do bazy */
     public void save(Kod_pocztowy kod_pocztowy)
     {
+        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+        simpleJdbcInsert.withTableName("KODY_POCZTOWE").usingColumns("KOD_POCZTOWY", "WOJEWODZTWO", "MIASTO");
+
+        BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(kod_pocztowy);
+        simpleJdbcInsert.execute(param);
     }
 
     /* Read – odczytywanie danych z bazy */

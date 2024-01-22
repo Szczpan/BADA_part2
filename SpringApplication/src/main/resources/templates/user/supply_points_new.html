@@ -6,7 +6,7 @@
     <title>Main User Page</title>
 
     <link th:rel="stylesheet" th:href="@{/css/background.css}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"/>
 
     <!-- Google Fonts Roboto -->
     <link
@@ -42,7 +42,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ms-auto">
 
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/main}">Main
@@ -85,36 +85,60 @@
         <div class="mask" style="background-color: rgba(0, 0, 0, 0.4); height: 100vh; width: 100%">
             <!-- Container -->
             <div class="container d-flex justify-content-center align-items-center h-75">
+                <div class="row">
 
-                    <table class="table" style="overflow: hidden; border-radius: 10px; background: #FAFFF6; border-top-color: #FAFFF6">
-                        <thead>
-                            <tr>
-                                <th>Street</th>
-                                <th>House Nr</th>
-                                <th>Postal Code</th>
-                                <th>City</th>
-                                <th>Voivodeship</th>
-                                <th>Country</th>
-                                <th>Voltage</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="supplyPoint : ${SupplyPointsWithAddresses}" class="text-capitalize">
-                                <td><span th:text="${supplyPoint.adres.ulica}"></span></td>
-                                <td><span th:text="${supplyPoint.adres.nr_domu}"></span></td>
-                                <td><span th:text="${supplyPoint.adres.kod_pocztowy}"></span></td>
-                                <td><span th:text="${supplyPoint.kod_pocztowy.miasto}"></span></td>
-                                <td><span th:text="${supplyPoint.kod_pocztowy.wojewodztwo}"></span></td>
-                                <td><span th:text="${supplyPoint.adres.kraj}"></span></td>
-                                <td><span th:text="${supplyPoint.punktPoboruEnergii.dostarczane_napiecie}"></span></td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <td colspan="7"><a class="btn btn-success pull-right" th:href="@{'/supply_points/new'}">Add new supply point</a></td>
-                        </tr>
-                        </tfoot>
-                    </table>
+                    <h1 style="margin:20px;">Add new supply point</h1>
+                    <br/>
+
+                    <!-- End line/ new line -->
+                    <br/>
+                    <form action="#" th:action="@{/supply_points/new/insert}" th:object="${supplyPoint}" method="post" class="row g-4">
+                        <!-- Table -->
+                        <div class="col-md-6">
+                            <label class="form-label" for="Street">Street</label>
+                            <input class="form-control" type="text" th:field="*{adres.ulica}" id="Street" maxlength="30" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="House_nr">House number</label>
+                            <input class="form-control" type="text" th:field="*{adres.nr_domu}" id="House_nr" maxlength="30" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="Postal-code">Postal code</label>
+                            <input class="form-control" type="text" th:field="*{kod_pocztowy.kod_pocztowy}" id="Postal-code" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label" for="City">City</label>
+                            <input class="form-control" type="text" th:field="*{kod_pocztowy.miasto}" id="City" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label" for="county">Voivodeship</label>
+                            <select class="form-select" th:field="*{kod_pocztowy.wojewodztwo}" id="county" required>
+                                <option value="">Please select</option>
+                                <option value="mazowieckie">Mazowieckie</option>
+                                <option value="K">Kobieta</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label" for="country">Country</label>
+                            <select class="form-select" th:field="*{adres.kraj}" id="country" required>
+                                <option value="">Please select</option>
+                                <option value="Polska">Polska</option>
+                            </select>
+                        </div>
+                        <!-- Button save -->
+
+                        <div class="col-md-6 text-end">
+                            <a class="btn btn-secondary" th:href="@{/supply_points}">Return</a>
+                        </div>
+
+                        <div class="col-md-6 text-start">
+                            <button class="btn btn-success" type="submit" onclick="successfullyLogout()">Save</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
