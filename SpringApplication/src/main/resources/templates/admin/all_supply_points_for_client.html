@@ -49,18 +49,18 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/user_info}">My info
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/supply_points}">Supply points
-                        </a>
-                    </li>
-
                     <li class="nav-item active">
-                        <a class="nav-link" th:href="@{/invoices}">Invoices
+                        <a class="nav-link" th:href="@{/all_clients}">Clients
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/all_supply_points}">Supply points
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/all_invoices}">Invoices
                         </a>
                     </li>
 
@@ -85,27 +85,44 @@
         <div class="mask" style="background-color: rgba(0, 0, 0, 0.4); height: 100vh; width: 100%">
             <!-- Container -->
             <div class="container d-flex justify-content-center align-items-center h-75">
+
                 <table class="table" style="overflow: hidden; border-radius: 10px; background: #FAFFF6; border-top-color: #FAFFF6">
                     <thead>
                     <tr>
-                        <th>Amount</th>
-                        <th>Date</th>
-                        <th>Status</th>
+                        <th>Street</th>
+                        <th>House Nr</th>
+                        <th>Postal Code</th>
+                        <th>City</th>
+                        <th>Voivodeship</th>
+                        <th>Country</th>
+                        <th>Voltage</th>
+                        <th>Edit</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="invoice : ${fakturaList}" class="text-capitalize">
-                        <td><span th:text="${invoice.kwota}"></span></td>
-                        <td><span th:text="${invoice.data}"></span></td>
-                        <td><span th:text="${invoice.status_faktury}"></span></td>
+                    <tr th:each="supplyPoint : ${SupplyPointsWithAddresses}" class="text-capitalize">
+                        <td><span th:text="${supplyPoint.adres.ulica}"></span></td>
+                        <td><span th:text="${supplyPoint.adres.nr_domu}"></span></td>
+                        <td><span th:text="${supplyPoint.adres.kod_pocztowy}"></span></td>
+                        <td><span th:text="${supplyPoint.kod_pocztowy.miasto}"></span></td>
+                        <td><span th:text="${supplyPoint.kod_pocztowy.wojewodztwo}"></span></td>
+                        <td><span th:text="${supplyPoint.adres.kraj}"></span></td>
+                        <td><span th:text="${supplyPoint.punktPoboruEnergii.dostarczane_napiecie}"></span></td>
+                        <td><a class="btn btn-secondary" th:href="@{'/supply_point/edit/' + ${supplyPoint.punktPoboruEnergii.nr_punktu}}">Edit</a></td>
                     </tr>
                     </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="7"><a class="btn btn-secondary pull-right" th:href="@{'/all_clients'}">Return</a></td>
+                        <td colspan="7"><a class="btn btn-success pull-right" th:href="@{'/admin_new_supply_point/'+${client_nr}}">Add a supply point</a></td>
+
+                    </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>
     </div>
 </header>
-
 
 <main>
     <div class="container">

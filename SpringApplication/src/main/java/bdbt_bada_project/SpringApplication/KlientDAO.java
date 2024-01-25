@@ -3,6 +3,8 @@ package bdbt_bada_project.SpringApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import java.net.CookieHandler;
@@ -30,7 +32,11 @@ public class KlientDAO
 
     public void save(Klient klient)
     {
+        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+        simpleJdbcInsert.withTableName("KLIENCI").usingColumns("IMIE", "NAZWISKO", "ADRES_EMAIL", "NR_TELEFONU", "NR_KONTA", "NR_CENTRALI", "NR_ADRESU");
 
+        BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(klient);
+        simpleJdbcInsert.execute(param);
     }
 
     public Klient get(String email)
@@ -47,6 +53,7 @@ public class KlientDAO
 
     public void delete(int nr_klienta)
     {
-
+        String sql = "DELETE FROM KLIENCI WHERE NR_KLIENTA = ?";
+        jdbcTemplate.update(sql, nr_klienta);
     }
 }

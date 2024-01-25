@@ -87,38 +87,14 @@
             <div class="container d-flex justify-content-center align-items-center h-100">
                 <div class="row">
                     <div class="card" style="padding: 20px">
-                    <h1 style="margin:20px;">Add new client</h1>
-
+                    <h1 style="margin:20px;">Add new supply point</h1>
+                    <br/>
 
                     <!-- End line/ new line -->
                     <br/>
-
-                    <form action="#" th:action="@{/all_clients/new/insert}" th:object="${clientAndAddress}" method="post" class="row g-4">
+                    <form action="#" th:action="@{'/admin_new_supply_point/insert/' + ${klient.nr_klienta}}" th:object="${supplyPoint}" method="post" class="row g-4">
                         <!-- Table -->
-                        <div class="col-md-6">
-                            <label class="form-label" for="name">Name</label>
-                            <input class="form-control" type="text" th:field="*{klient.imie}" id="name" maxlength="30" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label" for="surname">Surname</label>
-                            <input class="form-control" type="text" th:field="*{klient.nazwisko}" id="surname" maxlength="30" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label" for="phone">Phone number</label>
-                            <input class="form-control" type="text" th:field="*{klient.nr_telefonu}" id="phone" required>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label" for="email">E-mail</label>
-                            <input class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" type="email" th:field="*{klient.adres_email}" id="email" required>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label" for="account">Bank account number</label>
-                            <input class="form-control" type="text" th:field="*{klient.nr_konta}" id="account" required>
-                        </div>
-
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <label class="form-label" for="Street">Street</label>
                             <input class="form-control" type="text" th:field="*{adres.ulica}" id="Street" maxlength="30" required>
                         </div>
@@ -131,10 +107,17 @@
                             <input class="form-control" type="text" th:field="*{kod_pocztowy.kod_pocztowy}" id="Postal-code" required>
                         </div>
 
-                        <div class="form-group">
+                        <div class="col-md-6">
                             <label class="form-label" for="City">City</label>
                             <input class="form-control" type="text" th:field="*{kod_pocztowy.miasto}" id="City" required>
                         </div>
+
+
+                        <div class="col-md-6">
+                            <label class="form-label" for="Voltage">Voltage</label>
+                            <input class="form-control" type="number" th:field="*{punktPoboruEnergii.dostarczane_napiecie}" id="Voltage">
+                        </div>
+
 
                         <div class="col-md-6">
                             <label class="form-label" for="county">Voivodeship</label>
@@ -176,19 +159,21 @@
                             <button class="btn btn-success" type="submit">Save</button>
                         </div>
                     </form>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Background image -->
+
 <main>
     <div class="container">
 
     </div>
 </main>
+
+
+
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>

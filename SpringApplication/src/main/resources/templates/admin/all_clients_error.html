@@ -49,18 +49,18 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/user_info}">My info
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/supply_points}">Supply points
-                        </a>
-                    </li>
-
                     <li class="nav-item active">
-                        <a class="nav-link" th:href="@{/invoices}">Invoices
+                        <a class="nav-link" th:href="@{/all_clients}">Clients
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/all_supply_points}">Supply points
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/all_invoices}">Invoices
                         </a>
                     </li>
 
@@ -83,23 +83,40 @@
 
     <div class="background">
         <div class="mask" style="background-color: rgba(0, 0, 0, 0.4); height: 100vh; width: 100%">
+            <script type="text/javascript">alert("Cannot remove this client - has other dependencies")</script>
             <!-- Container -->
             <div class="container d-flex justify-content-center align-items-center h-75">
+
                 <table class="table" style="overflow: hidden; border-radius: 10px; background: #FAFFF6; border-top-color: #FAFFF6">
                     <thead>
                     <tr>
-                        <th>Amount</th>
-                        <th>Date</th>
-                        <th>Status</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Account number</th>
+                        <th>Supply points</th>
+                        <th>Invoices</th>
+                        <th>Remove</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="invoice : ${fakturaList}" class="text-capitalize">
-                        <td><span th:text="${invoice.kwota}"></span></td>
-                        <td><span th:text="${invoice.data}"></span></td>
-                        <td><span th:text="${invoice.status_faktury}"></span></td>
+                    <tr th:each="client : ${klientList}">
+                        <td><span th:text="${client.imie}"></span></td>
+                        <td><span th:text="${client.nazwisko}"></span></td>
+                        <td><span th:text="${client.adres_email}"></span></td>
+                        <td><span th:text="${client.nr_telefonu}"></span></td>
+                        <td><span th:text="${client.nr_konta}"></span></td>
+                        <td><a class="btn btn-secondary" th:href="@{'/admin_supply_points/' + ${client.nr_klienta}}">View</a></td>
+                        <td><a class="btn btn-secondary" th:href="@{'/all_invoices/' + ${client.nr_klienta}}">View</a></td>
+                        <td><a class="btn btn-danger" th:href="@{'/remove_client/' + ${client.nr_klienta}}">Remove</a></td>
                     </tr>
                     </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="8"><a class="btn btn-success pull-right" th:href="@{'/all_clients/new'}">Add new client</a></td>
+                    </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>
@@ -107,6 +124,7 @@
 </header>
 
 
+<!-- Background image -->
 <main>
     <div class="container">
 

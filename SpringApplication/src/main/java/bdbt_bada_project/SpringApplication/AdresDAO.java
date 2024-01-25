@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
@@ -46,7 +47,13 @@ public class AdresDAO
 
     public void update(Adres adres)
     {
+        String sql = "UPDATE ADRESY SET ULICA=:ulica, NR_DOMU=:nr_domu WHERE NR_ADRESU=:nr_adresu";
 
+        BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(adres);
+
+        NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
+
+        template.update(sql, param);
     }
 
     public void delete(int nr_adresu)

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
@@ -56,6 +57,13 @@ public class PunktPoboruEnergiiDAO
     /* Update – aktualizacja danych */
     public void update(PunktPoboruEnergii punktPoboruEnergii)
     {
+        String sql = "UPDATE PUNKTY_POBORU_ENERGII SET DOSTARCZANE_NAPIECIE=:dostarczane_napiecie WHERE NR_PUNKTU=:nr_punktu";
+
+        BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(punktPoboruEnergii);
+
+        NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
+
+        template.update(sql, param);
     }
 
     /* Delete – wybrany rekord z danym id */

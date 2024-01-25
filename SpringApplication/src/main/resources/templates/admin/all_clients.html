@@ -106,14 +106,14 @@
             <td><span th:text="${client.adres_email}"></span></td>
             <td><span th:text="${client.nr_telefonu}"></span></td>
             <td><span th:text="${client.nr_konta}"></span></td>
-            <td><a class="btn btn-secondary" th:href="@{'/all_supply_points/' + ${client.nr_klienta}}">View</a></td>
+            <td><a class="btn btn-secondary" th:href="@{'/admin_supply_points/' + ${client.nr_klienta}}">View</a></td>
             <td><a class="btn btn-secondary" th:href="@{'/all_invoices/' + ${client.nr_klienta}}">View</a></td>
-            <td><a class="btn btn-danger" th:href="@{'/remove/' + ${client.nr_klienta}}">Remove</a></td>
+            <td><a class="btn btn-danger" th:href="@{'/remove_client/' + ${client.nr_klienta}}">Remove</a></td>
           </tr>
           </tbody>
           <tfoot>
           <tr>
-            <td colspan="8"><a class="btn btn-success pull-right" th:href="@{'/supply_points/new'}">Add new client</a></td>
+            <td colspan="8"><a class="btn btn-success pull-right" th:href="@{'/all_clients/new'}">Add new client</a></td>
           </tr>
           </tfoot>
         </table>
